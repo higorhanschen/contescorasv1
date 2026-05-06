@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="landing_page_cont_escoras2_files/css2.css" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --vermelho: #E02020;
+    --vermelho-escuro: #B01818;
+    --preto: #0D0D0D;
+    --preto-medio: #1A1A1A;
+    --preto-card: #222222;
+    --branco: #FFFFFF;
+    --cinza-claro: #F5F5F5;
+    --texto-muted: #999999;
+  }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background: var(--preto);
+    color: var(--branco);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--preto);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--vermelho);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo-img {
+    height: 38px;
+    width: auto;
+    display: block;
+  }
+  .nav-cta {
+    background: var(--vermelho);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.82rem;
+    padding: 0.55rem 1.3rem;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover { background: var(--vermelho-escuro); }
+
+  /* HERO */
+  .hero {
+    background: var(--preto-medio);
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 60px,
+      rgba(224,32,32,0.05) 60px,
+      rgba(224,32,32,0.05) 61px
+    );
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--vermelho);
+  }
+  .badge {
+    display: inline-block;
+    background: var(--vermelho);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.0;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+  .hero h1 span { color: var(--vermelho); }
+  .hero p.sub {
+    font-size: 1.05rem;
+    color: #bbb;
+    max-width: 560px;
+    margin: 1rem auto 2rem;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #25D366;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 1rem 2.2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    transition: transform 0.15s, background 0.15s;
+    text-decoration: none;
+  }
+  .hero-cta:hover { background: #1ebe5a; transform: translateY(-2px); }
+  .hero-cta svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+  .hero-sub-note { margin-top: 1rem; font-size: 0.82rem; color: var(--texto-muted); }
+
+  /* NUMBERS BAR */
+  .numbers-bar {
+    background: var(--vermelho);
+    padding: 1.3rem 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .num-item { text-align: center; }
+  .num-item strong {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+  }
+  .num-item span {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* SECTION */
+  section {
+    padding: 4rem 2rem;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--vermelho);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  /* SPECS */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: #2e2e2e;
+    border: 1px solid #2e2e2e;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+  .spec-card {
+    background: var(--preto-card);
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+  }
+  .spec-card .spec-icon { font-size: 1.6rem; margin-bottom: 0.5rem; display: block; }
+  .spec-card .spec-value {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--vermelho);
+    line-height: 1;
+  }
+  .spec-card .spec-label {
+    font-size: 0.75rem;
+    color: var(--texto-muted);
+    margin-top: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ACCESSORIES */
+  .acc-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .acc-item {
+    background: var(--preto-card);
+    border-left: 3px solid var(--vermelho);
+    padding: 1rem 1.2rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .acc-item strong { display: block; font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .acc-item span { font-size: 0.8rem; color: var(--texto-muted); }
+
+  /* WHY */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  .why-card {
+    background: var(--preto-card);
+    border: 1px solid #2e2e2e;
+    border-radius: 4px;
+    padding: 1.5rem;
+  }
+  .why-card .why-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(224,32,32,0.15);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .why-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .why-card p { font-size: 0.85rem; color: var(--texto-muted); line-height: 1.6; }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid #222; margin: 0 2rem; }
+
+  /* CTA FINAL */
+  .cta-final {
+    background: var(--preto-medio);
+    border-top: 4px solid var(--vermelho);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .cta-logo { height: 50px; width: auto; margin: 0 auto 2rem; display: block; }
+  .cta-final h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .cta-final h2 span { color: var(--vermelho); }
+  .cta-final p { color: #aaa; max-width: 480px; margin: 0 auto 2rem; font-size: 1rem; }
+  .cta-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #25D366;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 1.1rem 2.5rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    letter-spacing: 0.5px;
+    transition: transform 0.15s, background 0.15s;
+  }
+  .cta-whatsapp:hover { background: #1ebe5a; transform: translateY(-2px); }
+  .cta-whatsapp svg { width: 22px; height: 22px; fill: #fff; flex-shrink: 0; }
+  .trust-line { margin-top: 1rem; font-size: 0.8rem; color: #444; }
+
+  /* FOOTER */
+  footer {
+    background: #080808;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.78rem;
+    color: #333;
+    border-top: 1px solid #1a1a1a;
+  }
+  footer img { height: 24px; width: auto; opacity: 0.4; display: block; margin: 0 auto 0.5rem; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <img class="logo-img" alt="Logo CCNM" src="landing_page_cont_escoras2_files/LOGO-CONT-2-1024x276.webp">
+  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Solicitar Orçamento</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="badge">Locação &amp; Venda · Construção Civil</div>
+  <h1>Escoras Metálicas<br><span>que sustentam</span><br>sua obra</h1>
+  <p class="sub">Suporte estrutural de alta capacidade para lajes, vigas e elementos de concreto. Segurança e agilidade em qualquer projeto.</p>
+  <a class="hero-cta" href="#cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'}); return false;">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M11.998 0C5.372 0 0 5.372 0 12c0 2.117.552 4.1 1.516 5.818L0 24l6.335-1.652C8.05 23.419 9.994 24 11.998 24 18.624 24 24 18.628 24 12S18.624 0 11.998 0zm0 22c-1.79 0-3.523-.482-5.038-1.394l-.36-.213-3.758.98 1.002-3.668-.235-.378C2.517 15.638 2 13.867 2 12c0-5.514 4.484-10 9.998-10C17.516 2 22 6.486 22 12s-4.484 10-10.002 10z"></path></svg>
+    Falar pelo WhatsApp
+  </a>
+  <p class="hero-sub-note">Atendimento imediato · Orçamento sem compromisso</p>
+</div>
+
+<!-- NUMBERS BAR -->
+<div class="numbers-bar">
+  <div class="num-item"><strong>3.000kg</strong><span>Carga máxima</span></div>
+  <div class="num-item"><strong>10t</strong><span>Por torre</span></div>
+  <div class="num-item"><strong>4.019mm</strong><span>Altura máxima</span></div>
+  <div class="num-item"><strong>100%</strong><span>Adaptável</span></div>
+</div>
+
+<!-- SPECS -->
+<section>
+  <p class="section-label">Especificações Técnicas</p>
+  <h2 class="section-title">Desempenho<br>de alto nível</h2>
+  <p style="color:#aaa;max-width:560px;font-size:0.95rem;">Projetadas para suportar as maiores demandas da construção civil, com precisão em cada detalhe e segurança em cada carga.</p>
+  <div class="specs-grid">
+    <div class="spec-card"><span class="spec-icon">⬆</span><div class="spec-value">2.270mm</div><div class="spec-label">Altura mínima</div></div>
+    <div class="spec-card"><span class="spec-icon">⬆</span><div class="spec-value">4.019mm</div><div class="spec-label">Altura máxima</div></div>
+    <div class="spec-card"><span class="spec-icon">⚖</span><div class="spec-value">1.300kg</div><div class="spec-label">Carga mínima</div></div>
+    <div class="spec-card"><span class="spec-icon">⚖</span><div class="spec-value">3.000kg</div><div class="spec-label">Carga máxima</div></div>
+    <div class="spec-card"><span class="spec-icon">🏗</span><div class="spec-value">Resistente</div><div class="spec-label">Feita para altas cargas</div></div>
+    <div class="spec-card"><span class="spec-icon">⚡</span><div class="spec-value">Rápida</div><div class="spec-label">Montagem por encaixe</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ACCESSORIES -->
+<section>
+  <p class="section-label">Acessórios</p>
+  <h2 class="section-title">Sistema completo<br>de reforço</h2>
+  <p style="color:#aaa;max-width:560px;font-size:0.95rem;">Complementos desenvolvidos para ampliar a versatilidade das escoras em qualquer tipo de projeto.</p>
+  <div class="acc-list">
+    <div class="acc-item"><strong>Forcado Simples</strong><span>Reforço pontual e travamento lateral</span></div>
+    <div class="acc-item"><strong>Forcado Duplo</strong><span>Maior estabilidade em vãos amplos</span></div>
+    <div class="acc-item"><strong>Cruzeta</strong><span>Rigidez e travamento cruzado</span></div>
+    <div class="acc-item"><strong>Rosca com pescoço</strong><span>Regulagem fina de altura e nivelamento</span></div>
+    <div class="acc-item"><strong>Flauta variável</strong><span>Adaptação a diferentes alturas de pé-direito</span></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- WHY -->
+<section>
+  <p class="section-label">Por que escolher</p>
+  <h2 class="section-title">A escolha certa<br>para sua obra</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-num">01</div><h3>Alta capacidade de carga</h3><p>Suporta até 3.000kg individualmente e 10 toneladas por torre, para projetos exigentes.</p></div>
+    <div class="why-card"><div class="why-num">02</div><h3>Montagem rápida</h3><p>Sistema de encaixe simples que reduz o tempo de instalação e aumenta a produtividade no canteiro.</p></div>
+    <div class="why-card"><div class="why-num">03</div><h3>Adaptável a qualquer projeto</h3><p>Altura ajustável de 2,27m a 4,02m para atender diferentes pés-direitos e estruturas.</p></div>
+    <div class="why-card"><div class="why-num">04</div><h3>Acessórios completos</h3><p>Ecossistema de reforço disponível para toda necessidade de travamento e nivelamento.</p></div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-final" id="cta">
+  <img class="cta-logo" alt="Logo CCNM branca" src="landing_page_cont_escoras2_files/LOGO-CONT-2-1024x276.webp">
+  <h2>Pronto para<br><span>fortalecer sua obra?</span></h2>
+  <p>Fale com nosso time agora e receba um orçamento personalizado para o seu projeto.</p>
+  <button class="cta-whatsapp" onclick="alert('Insira aqui o link do WhatsApp com mensagem pré-definida')">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M11.998 0C5.372 0 0 5.372 0 12c0 2.117.552 4.1 1.516 5.818L0 24l6.335-1.652C8.05 23.419 9.994 24 11.998 24 18.624 24 24 18.628 24 12S18.624 0 11.998 0zm0 22c-1.79 0-3.523-.482-5.038-1.394l-.36-.213-3.758.98 1.002-3.668-.235-.378C2.517 15.638 2 13.867 2 12c0-5.514 4.484-10 9.998-10C17.516 2 22 6.486 22 12s-4.484 10-10.002 10z"></path></svg>
+    Solicitar Orçamento pelo WhatsApp
+  </button>
+  <p class="trust-line">Resposta em minutos · Atendimento especializado · Sem compromisso</p>
+</div>
+
+<footer>
+  <img alt="Logo CCNM" src="landing_page_cont_escoras2_files/LOGO-CONT-2-1024x276.webp">
+  © 2026 CONT · Todos os direitos reservados
+</footer>
+
+
+
+</body></html>
